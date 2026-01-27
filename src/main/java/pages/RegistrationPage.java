@@ -26,12 +26,19 @@ public class RegistrationPage extends BasePage {
     WebElement fieldPassword;
     @FindBy(xpath = "//label[@for='terms-of-use']")
     WebElement checkBoxAgree;
+    @FindBy(css = "button[type='submit']")
+    WebElement btnYalla;
+
 
     public void typeRegistrationForm(User user) {
         fieldFirstName.sendKeys(user.getFirstName());
         fieldLastName.sendKeys(user.getLastName());
         fieldEmail.sendKeys(user.getEmail());
         fieldPassword.sendKeys(user.getPassword());
+    }
+
+    public void clickBtnYalla(){
+        btnYalla.click();
     }
 
     public void clickCheckBox() {
@@ -56,10 +63,10 @@ public class RegistrationPage extends BasePage {
     public void clickCheckBoxWithActions() {
         int y = checkBoxAgree.getSize().getHeight();
         int x = checkBoxAgree.getSize().getWidth();
-        System.out.println(x + "x" + y);
+        System.out.println(x + " x " + y);
 
         Actions actions = new Actions(driver);
-        actions.moveToElement().click().perform();
+        actions.moveToElement(checkBoxAgree, -x/2, -y/2 ).click().perform();
     }
 
 }
